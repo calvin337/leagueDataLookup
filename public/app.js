@@ -14,6 +14,7 @@ angular.module('lol', ['ngRoute'])
 })
 .controller('LookupController', function ($scope, $http) {
   $scope.summoner = {};
+  $scope.champions = [];
   $scope.lookUp = function(summName) {
     $scope.summoner['name'] = summName;
     return $http({
@@ -22,6 +23,7 @@ angular.module('lol', ['ngRoute'])
       data: $scope.summoner
     }).then(function(data) {
       console.log(data)
+      $scope.champions = data.data; 
     })
   }
 });

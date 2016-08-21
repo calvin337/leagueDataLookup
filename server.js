@@ -49,8 +49,21 @@ app.post('/search', function(req, res, next) {
         },
         function(err, data) {
           console.log('Champion data: ', champions)
-          console.log('Summoner data: ',data)
-          res.status(200).json(data);
+          console.log('Summoner champion data: ', data.champions)
+          var userChampions = [];
+          //loop through all the champion data and match the ids to the champion name
+          data.champions.forEach(function(champion) {
+            if(champion.id !== 0)
+              userChampions.push(champion.id);
+          });
+          console.log(userChampions)
+          for(var champion in champions) {
+            var index = userChampions.indexOf(champions[champion].id);
+            if (index >= 0) {
+              userChampions[index] = champions[champion].name;
+            }
+          }
+          res.status(200).json(userChampions);
         }
       )
     }

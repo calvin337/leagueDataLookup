@@ -3,11 +3,16 @@
   <head>
     <meta charset="utf-8" />
     <title>League Stat Lookup</title>
+    <link rel="stylesheet" type="text/css" href="style.css"/>
   </head>
   <body ng-controller="LookupController">
     <h1>Enter your summoner name</h1>
     <input type="text" name="name" ng-model="summName" value="">
     <button ng-click="lookUp(summName)">Lookup</button>
+    <h2>Champions played this season in ranked:</h2>
+    <ul>
+      <div ng-repeat="champion in champions"> {{champion}} </div>
+    </ul>
     <!-- the ng-view directive is where our templates will be loaded into when naviagted to -->
     <script src="lib/angular/angular.js"></script>
     <script src="lib/angular-route/angular-route.js"></script>
