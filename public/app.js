@@ -3,7 +3,6 @@ angular.module('lol', ['ngRoute'])
   $routeProvider
     .when('/', {
       templateUrl: 'public/index.html',
-      controller: 'LookupController'
     })
     .when('/search', {
       templateUrl: 'public/search'
@@ -13,11 +12,13 @@ angular.module('lol', ['ngRoute'])
   $scope.summoner = {};
   $scope.champions = [];
   $scope.stats = {};
+
   $scope.reset = function() {
     $scope.summoner = {};
     $scope.champions = [];
     $scope.stats = {};
   }
+
   $scope.lookUp = function(summName) {
     $scope.reset();
     $scope.summoner['name'] = summName;
@@ -37,6 +38,7 @@ angular.module('lol', ['ngRoute'])
       console.log('summoner object inside app.js', $scope.stats['Ashe'])
     })
   }
+
   $scope.winRate = function(champion) {
     return ($scope.stats[champion].totalSessionsWon/$scope.stats[champion].totalSessionsPlayed * 100).toFixed(2);
   }
