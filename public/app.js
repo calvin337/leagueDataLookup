@@ -13,7 +13,13 @@ angular.module('lol', ['ngRoute'])
   $scope.summoner = {};
   $scope.champions = [];
   $scope.stats = {};
+  $scope.reset = function() {
+    $scope.summoner = {};
+    $scope.champions = [];
+    $scope.stats = {};
+  }
   $scope.lookUp = function(summName) {
+    $scope.reset();
     $scope.summoner['name'] = summName;
     return $http({
       method: 'POST',
