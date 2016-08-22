@@ -61,7 +61,6 @@ app.post('/search', function(req, res, next) {
               championData[champions[champion].id].name = champions[champion].key;
             }
           }
-          console.log(championData)
           res.status(200).json(championData);
         }
       )

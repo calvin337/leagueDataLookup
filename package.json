@@ -5,6 +5,7 @@
   "main": "server.js",
   "scripts": {
     "test": "npm test",
+    "postinstall": "bower cache clean && bower install",
     "start": "node server.js"
   },
   "repository": {
@@ -16,7 +17,11 @@
   "dependencies": {
     "body-parser": "^1.15.2",
     "bootstrap": "^3.3.7",
+    "bower": "^1.7.9",
     "express": "^4.14.0",
     "riot-games-api-nodejs": "^1.0.6"
+  },
+  "engines": {
+    "node": "6.3.1"
   }
 }
