@@ -1,6 +1,31 @@
 body {
-  margin: 0;
-  margin-top: 10px;
-  font-family: verdana;
-  background-color: #7FFFD4;
+    font-size: 18px;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    height: auto;
+    cursor: default;
+    font-family: verdana;
+    background-image: url(https://images4.alphacoders.com/594/594917.jpg);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-color: #464646;
+    width: 100%;
+}
+
+body ul {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+div.champion{
+  margin: 10px;
+  background: black;
+  color: white;
+  width: 20%;
+}
+
+.stats {
+  vertical-align: top;
 }

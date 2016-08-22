@@ -2,16 +2,27 @@
 <html ng-app="lol">
   <head>
     <meta charset="utf-8" />
-    <title>League Stat Lookup</title>
+    <title>Summoner Lookup</title>
     <link rel="stylesheet" type="text/css" href="style.css"/>
+    <link href="./bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" href="./bootstrap.css">
   </head>
   <body ng-controller="LookupController">
-    <h1>Enter your summoner name</h1>
-    <input type="text" name="name" ng-model="summName" value="">
-    <button ng-click="lookUp(summName)">Lookup</button>
-    <h2>Champions played this season in ranked:</h2>
+    <h1>Summoner Lookup</h1>
+    <form>
+      <input type="text" name="name" ng-model="summName" value="">
+      <button ng-click="lookUp(summName)">Lookup</button>
+    </form>
+    <div ng-show="champions.length">Champions played this season in ranked:</div>
     <ul>
-      <div ng-repeat="champion in champions"> {{champion}} </div>
+      <div class="champion"ng-repeat="champion in champions | orderBy:'-stats[champion].totalSessionsWon'">
+        <img src="http://ddragon.leagueoflegends.com/cdn/6.16.2/img/champion/{{champion}}.png">
+        <span class="stats">{{winRate(champion)}}% win rate</span>
+        <br>
+        <span class="stats">{{kdaRatio(champion)}}KDA</span>
+        <span class="stats">Wins: {{stats[champion].totalSessionsWon}}</span>
+        <span class="stats">Lossses: {{stats[champion].totalSessionsLost}}</span>
+      </div>
     </ul>
     <!-- the ng-view directive is where our templates will be loaded into when naviagted to -->
     <script src="lib/angular/angular.js"></script>

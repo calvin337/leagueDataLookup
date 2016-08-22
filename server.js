@@ -29,7 +29,6 @@ app.use(express.static(__dirname + '/public'));
 app.set('port', process.env.PORT || 3000);
 
 app.get('/lookup', function(req, res) {
-  console.log('poop')
   res.sendFile(__dirname + '/public/lookup.html');
 })
 
@@ -41,29 +40,29 @@ app.post('/search', function(req, res, next) {
     {},
     function(err, data) {
       id = data[summName].id;
-      console.log('INSIDE BYNAME', id)
       riot.stats.ranked(
         id,
         {
         season : 'SEASON2016'
         },
         function(err, data) {
-          console.log('Champion data: ', champions)
-          console.log('Summoner champion data: ', data.champions)
+          var championData = {};
           var userChampions = [];
           //loop through all the champion data and match the ids to the champion name
           data.champions.forEach(function(champion) {
             if(champion.id !== 0)
               userChampions.push(champion.id);
+              championData[champion.id] = champion.stats;
           });
-          console.log(userChampions)
           for(var champion in champions) {
             var index = userChampions.indexOf(champions[champion].id);
             if (index >= 0) {
-              userChampions[index] = champions[champion].name;
+              userChampions[index] = champions[champion].key;
+              championData[champions[champion].id].name = champions[champion].key;
             }
           }
-          res.status(200).json(userChampions);
+          console.log(championData)
+          res.status(200).json(championData);
         }
       )
     }
